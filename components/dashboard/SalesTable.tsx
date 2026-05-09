@@ -86,14 +86,14 @@ export function SalesTable() {
     <div className="space-y-4">
       <div className="flex flex-col md:flex-row gap-4 p-4 bg-white rounded-lg shadow-sm">
         <div className="flex-1 grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Select value={filterUser} onValueChange={setFilterUser}>
+          <Select value={filterUser} onValueChange={(val) => val && setFilterUser(val)}>
             <SelectTrigger><SelectValue placeholder="Salesperson" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Salespersons</SelectItem>
               {salespeople.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
             </SelectContent>
           </Select>
-          <Select value={filterStatus} onValueChange={setFilterStatus}>
+          <Select value={filterStatus} onValueChange={(val) => val && setFilterStatus(val)}>
             <SelectTrigger><SelectValue placeholder="Status" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Status</SelectItem>

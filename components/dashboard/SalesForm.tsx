@@ -62,8 +62,10 @@ export function SalesForm() {
     }
   };
 
-  const handleSelectChange = (field: string) => (value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+  const handleSelectChange = (field: string) => (value: string | null) => {
+    if (value) {
+      setFormData(prev => ({ ...prev, [field]: value }));
+    }
   };
 
   return (
