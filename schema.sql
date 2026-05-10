@@ -27,8 +27,14 @@ CREATE TABLE IF NOT EXISTS public.sales (
     payment_mode TEXT NOT NULL,
     status TEXT NOT NULL CHECK (status IN ('completed', 'pending', 'refunded')),
     pending_percent NUMERIC DEFAULT 0,
+    received_amount NUMERIC DEFAULT 0,
+    remarks TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
+
+-- Note: If the table already exists, run these lines to update it:
+-- ALTER TABLE public.sales ADD COLUMN IF NOT EXISTS received_amount NUMERIC DEFAULT 0;
+-- ALTER TABLE public.sales ADD COLUMN IF NOT EXISTS remarks TEXT;
 
 -- Enable Realtime for sales table
 ALTER PUBLICATION supabase_realtime ADD TABLE public.sales;

@@ -25,13 +25,18 @@ export function SalesForm() {
     product: "",
     amount: "",
     date: format(new Date(), "yyyy-MM-dd"),
-    payment_mode: "bank_transfer",
-    status: "completed",
-    pending_percent: "0",
+    payment_mode: "",
+    status: "",
+    received_amount: "",
+    remarks: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.payment_mode || !formData.status) {
+      toast.error("Please select a payment mode and status");
+      return;
+    }
     setLoading(true);
     
     try {
@@ -44,7 +49,8 @@ export function SalesForm() {
         date: formData.date,
         payment_mode: formData.payment_mode,
         status: formData.status as any,
-        pending_percent: formData.status === "pending" ? Number(formData.pending_percent) : 0,
+        received_amount: formData.status === "completed" ? Number(formData.amount) : Number(formData.received_amount || 0),
+        remarks: formData.remarks,
       });
       
       setFormData(prev => ({
@@ -53,6 +59,10 @@ export function SalesForm() {
         client_phone: "",
         product: "",
         amount: "",
+        payment_mode: "",
+        status: "",
+        received_amount: "",
+        remarks: "",
       }));
       toast.success("Sale added successfully!");
     } catch (err) {
@@ -69,20 +79,22 @@ export function SalesForm() {
   };
 
   return (
-    <Card className="bg-white border-0 shadow-sm">
-      <CardHeader>
-        <CardTitle className="text-lg font-semibold text-slate-800 flex items-center">
-          <PlusCircle className="mr-2 h-5 w-5 text-indigo-500" />
+    <Card className="rounded-[24px] border border-white/60 bg-white/70 shadow-[0_4px_24px_rgb(0,0,0,0.02)] backdrop-blur-xl overflow-hidden">
+      <CardHeader className="pt-8 px-8 pb-4 bg-gradient-to-b from-white/50 to-transparent">
+        <CardTitle className="text-[22px] font-heading font-extrabold text-[#111827] flex items-center">
+          <div className="bg-[#C6FF3B] p-2.5 rounded-xl mr-3 shadow-sm">
+            <PlusCircle className="h-6 w-6 text-[#111827]" />
+          </div>
           Add New Sale
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+      <CardContent className="px-8 pb-8">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {user?.role === "admin" && (
             <div className="space-y-2">
-              <Label>Salesperson</Label>
+              <Label className="text-[#374151] font-semibold text-[15px]">Salesperson</Label>
               <Select value={formData.created_by} onValueChange={handleSelectChange("created_by")}>
-                <SelectTrigger>
+                <SelectTrigger className="h-12 text-[15px]">
                   <SelectValue placeholder="Select salesperson" />
                 </SelectTrigger>
                 <SelectContent>
@@ -94,38 +106,38 @@ export function SalesForm() {
             </div>
           )}
           
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-5">
             <div className="space-y-2">
-              <Label>Client Name</Label>
-              <Input required value={formData.client_name} onChange={e => setFormData(p => ({...p, client_name: e.target.value}))} />
+              <Label className="text-[#374151] font-semibold text-[15px]">Client Name</Label>
+              <Input required value={formData.client_name} onChange={e => setFormData(p => ({...p, client_name: e.target.value}))} className="h-12 text-[15px]" />
             </div>
             <div className="space-y-2">
-              <Label>Client Phone</Label>
-              <Input value={formData.client_phone} onChange={e => setFormData(p => ({...p, client_phone: e.target.value}))} />
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label>Product / Service</Label>
-              <Input required value={formData.product} onChange={e => setFormData(p => ({...p, product: e.target.value}))} />
-            </div>
-            <div className="space-y-2">
-              <Label>Amount (₹)</Label>
-              <Input type="number" required min="0" value={formData.amount} onChange={e => setFormData(p => ({...p, amount: e.target.value}))} />
+              <Label className="text-[#374151] font-semibold text-[15px]">Client Phone</Label>
+              <Input value={formData.client_phone} onChange={e => setFormData(p => ({...p, client_phone: e.target.value}))} className="h-12 text-[15px]" />
             </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-5">
             <div className="space-y-2">
-              <Label>Date</Label>
-              <Input type="date" required value={formData.date} onChange={e => setFormData(p => ({...p, date: e.target.value}))} />
+              <Label className="text-[#374151] font-semibold text-[15px]">Product / Service</Label>
+              <Input required value={formData.product} onChange={e => setFormData(p => ({...p, product: e.target.value}))} className="h-12 text-[15px]" />
             </div>
             <div className="space-y-2">
-              <Label>Payment Mode</Label>
+              <Label className="text-[#374151] font-semibold text-[15px]">Amount (₹)</Label>
+              <Input type="number" required min="0" value={formData.amount} onChange={e => setFormData(p => ({...p, amount: e.target.value}))} className="h-12 text-[15px]" />
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-5">
+            <div className="space-y-2">
+              <Label className="text-[#374151] font-semibold text-[15px]">Date</Label>
+              <Input type="date" required value={formData.date} onChange={e => setFormData(p => ({...p, date: e.target.value}))} className="h-12 text-[15px]" />
+            </div>
+            <div className="space-y-2">
+              <Label className="text-[#374151] font-semibold text-[15px]">Payment Mode</Label>
               <Select value={formData.payment_mode} onValueChange={handleSelectChange("payment_mode")}>
-                <SelectTrigger>
-                  <SelectValue />
+                <SelectTrigger className="h-12 text-[15px]">
+                  <SelectValue placeholder="Select Payment Mode" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="bank_transfer">Bank Transfer</SelectItem>
@@ -137,12 +149,12 @@ export function SalesForm() {
             </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-5">
             <div className="space-y-2">
-              <Label>Status</Label>
+              <Label className="text-[#374151] font-semibold text-[15px]">Status</Label>
               <Select value={formData.status} onValueChange={handleSelectChange("status")}>
-                <SelectTrigger>
-                  <SelectValue />
+                <SelectTrigger className="h-12 text-[15px]">
+                  <SelectValue placeholder="Select Status" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="completed">Completed</SelectItem>
@@ -153,14 +165,19 @@ export function SalesForm() {
             </div>
             {formData.status === "pending" && (
               <div className="space-y-2">
-                <Label>Pending Percent (%)</Label>
-                <Input type="number" min="1" max="100" required value={formData.pending_percent} onChange={e => setFormData(p => ({...p, pending_percent: e.target.value}))} />
+                <Label className="text-[#374151] font-semibold text-[15px]">Received Amount (₹)</Label>
+                <Input type="number" min="0" max={formData.amount || "1000000000"} required value={formData.received_amount} onChange={e => setFormData(p => ({...p, received_amount: e.target.value}))} className="h-12 text-[15px]" />
               </div>
             )}
           </div>
           
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Add Sale Entry"}
+          <div className="space-y-2">
+            <Label className="text-[#374151] font-semibold text-[15px]">Remarks / Comments (Optional)</Label>
+            <Input value={formData.remarks} onChange={e => setFormData(p => ({...p, remarks: e.target.value}))} placeholder="Any caption or comments..." className="h-12 text-[15px]" />
+          </div>
+          
+          <Button type="submit" className="w-full h-12 text-base font-bold rounded-xl bg-[#6D5EF5] hover:bg-[#5848ed] text-white shadow-[0_4px_14px_0_rgba(109,94,245,0.39)] transition-all duration-200 hover:-translate-y-0.5 mt-6" disabled={loading}>
+            {loading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : "Add Sale Entry"}
           </Button>
         </form>
       </CardContent>

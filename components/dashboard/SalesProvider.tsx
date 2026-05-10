@@ -17,6 +17,8 @@ export type Sale = {
   payment_mode: string;
   status: "completed" | "pending" | "refunded";
   pending_percent: number;
+  received_amount: number;
+  remarks: string | null;
   created_at: string;
 };
 

@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Sora, Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
 import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Live Sales Tracker Dashboard",
+  title: "Askus live sales tracker",
   description: "Track sales live with dashboard",
 };
 
@@ -27,9 +27,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${sora.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
+      <body className="min-h-full flex flex-col bg-[#F5F7FB] text-[#17153B] font-sans selection:bg-[#C6FF3B] selection:text-[#17153B]">
         <AuthProvider>
           {children}
           <Toaster position="top-right" />

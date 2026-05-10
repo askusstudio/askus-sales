@@ -43,38 +43,41 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[100dvh] bg-slate-50 p-4">
-      <Card className="w-full max-w-md shadow-lg border-0 bg-white">
-        <CardHeader className="text-center space-y-2 pb-6">
-          <CardTitle className="text-3xl font-bold tracking-tight text-slate-900">Live Sales Tracker</CardTitle>
-          <CardDescription className="text-slate-500 text-base">Sign in to your account</CardDescription>
+    <div className="flex items-center justify-center min-h-[100dvh] bg-[#F5F7FB] p-4 relative overflow-hidden">
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#C6FF3B]/30 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#6D5EF5]/20 rounded-full blur-[120px] pointer-events-none" />
+      
+      <Card className="w-full max-w-md rounded-[24px] border border-white/60 bg-white/70 shadow-[0_4px_24px_rgb(0,0,0,0.02)] backdrop-blur-xl overflow-hidden relative z-10">
+        <CardHeader className="text-center space-y-3 pb-8 pt-10">
+          <CardTitle className="text-4xl font-heading font-extrabold tracking-tight text-[#17153B]">Askus Tracker</CardTitle>
+          <CardDescription className="text-slate-500 font-medium text-base tracking-wide uppercase">Sign in to your dashboard</CardDescription>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleLogin} className="space-y-5">
-            <div className="space-y-2">
-              <Label htmlFor="username" className="text-slate-700">Username</Label>
+        <CardContent className="px-8 pb-10">
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div className="space-y-3">
+              <Label htmlFor="username" className="text-[#17153B] font-semibold text-[15px] tracking-wide">Username</Label>
               <Input 
                 id="username" 
                 placeholder="e.g. kb, shivani" 
                 value={username} 
                 onChange={(e) => setUsername(e.target.value)} 
                 required 
-                className="h-11"
+                className="h-14 text-[15px] rounded-xl border-slate-200 bg-white/50 focus:bg-white transition-all duration-200"
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password" className="text-slate-700">Password</Label>
+            <div className="space-y-3">
+              <Label htmlFor="password" className="text-[#17153B] font-semibold text-[15px] tracking-wide">Password</Label>
               <Input 
                 id="password" 
                 type="password" 
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)} 
                 required 
-                className="h-11"
+                className="h-14 text-[15px] rounded-xl border-slate-200 bg-white/50 focus:bg-white transition-all duration-200"
               />
             </div>
-            <Button type="submit" className="w-full h-11 text-base font-medium" disabled={loading}>
-              {loading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : "Sign In"}
+            <Button type="submit" className="w-full h-14 text-[15px] font-bold rounded-xl bg-[#6D5EF5] hover:bg-[#5848ed] text-white shadow-[0_4px_14px_0_rgba(109,94,245,0.39)] transition-all duration-200 hover:-translate-y-0.5 mt-4" disabled={loading}>
+              {loading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : "Access Dashboard"}
             </Button>
           </form>
         </CardContent>
