@@ -45,31 +45,32 @@ export function DashboardContent() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center mb-2">
-        <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Dashboard Overview</h2>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-2">
+        <h2 className="text-[22px] sm:text-[28px] font-heading font-extrabold text-[#111827] tracking-tight">Dashboard Overview</h2>
         {user?.role === "admin" && (
           <Dialog open={openSettings} onOpenChange={setOpenSettings}>
             <DialogTrigger>
-              <div className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-8 px-3">
-                <Settings className="h-4 w-4 mr-2" />
+              <div className="inline-flex items-center justify-center whitespace-nowrap rounded-xl text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-slate-200 bg-white shadow-sm hover:bg-slate-50 h-10 px-4">
+                <Settings className="h-5 w-5 mr-2 text-[#6D5EF5]" />
                 Edit Target
               </div>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="mx-4 sm:mx-auto rounded-[20px]">
               <DialogHeader>
-                <DialogTitle>Edit Target Amount</DialogTitle>
+                <DialogTitle className="text-[22px] font-heading font-extrabold text-[#111827]">Edit Target Amount</DialogTitle>
               </DialogHeader>
               <div className="space-y-4 py-4">
                 <div className="space-y-2">
-                  <Label>New Target Amount (₹)</Label>
+                  <Label className="text-[#374151] font-semibold text-[15px]">New Target Amount (₹)</Label>
                   <Input 
                     type="number" 
                     value={targetInput} 
                     onChange={(e) => setTargetInput(e.target.value)} 
+                    className="h-12 text-[15px]"
                   />
                 </div>
-                <Button onClick={handleSaveTarget} disabled={isSavingTarget} className="w-full">
-                  {isSavingTarget ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                <Button onClick={handleSaveTarget} disabled={isSavingTarget} className="w-full h-12 text-[15px] font-bold rounded-xl bg-[#6D5EF5] hover:bg-[#5848ed] text-white shadow-[0_4px_14px_0_rgba(109,94,245,0.39)]">
+                  {isSavingTarget ? <Loader2 className="h-5 w-5 animate-spin mr-2" /> : null}
                   Save Target
                 </Button>
               </div>
@@ -93,14 +94,14 @@ export function DashboardContent() {
 
       <div className="pt-4">
         <Tabs defaultValue="sales" className="w-full">
-          <TabsList className="w-full max-w-md grid grid-cols-2 bg-white border border-slate-200">
-            <TabsTrigger value="sales" className="data-[state=active]:bg-indigo-50 data-[state=active]:text-indigo-700">Sales History</TabsTrigger>
-            <TabsTrigger value="analytics" className="data-[state=active]:bg-indigo-50 data-[state=active]:text-indigo-700">Analytics</TabsTrigger>
+          <TabsList className="w-full sm:w-auto sm:max-w-md grid grid-cols-2 bg-white border border-slate-200 rounded-xl h-12">
+            <TabsTrigger value="sales" className="data-[state=active]:bg-[#6D5EF5]/10 data-[state=active]:text-[#6D5EF5] text-[15px] font-semibold rounded-xl">Sales History</TabsTrigger>
+            <TabsTrigger value="analytics" className="data-[state=active]:bg-[#6D5EF5]/10 data-[state=active]:text-[#6D5EF5] text-[15px] font-semibold rounded-xl">Analytics</TabsTrigger>
           </TabsList>
-          <TabsContent value="sales" className="mt-4">
+          <TabsContent value="sales" className="mt-6">
             <SalesTable />
           </TabsContent>
-          <TabsContent value="analytics" className="mt-4">
+          <TabsContent value="analytics" className="mt-6">
             <AnalyticsCharts />
           </TabsContent>
         </Tabs>

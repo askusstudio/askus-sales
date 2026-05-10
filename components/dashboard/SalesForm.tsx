@@ -49,6 +49,7 @@ export function SalesForm() {
         date: formData.date,
         payment_mode: formData.payment_mode,
         status: formData.status as any,
+        pending_percent: formData.status === "completed" ? 0 : formData.status === "pending" ? Math.round((1 - Number(formData.received_amount || 0) / Number(formData.amount || 1)) * 100) : 0,
         received_amount: formData.status === "completed" ? Number(formData.amount) : Number(formData.received_amount || 0),
         remarks: formData.remarks,
       });
@@ -80,15 +81,15 @@ export function SalesForm() {
 
   return (
     <Card className="rounded-[24px] border border-white/60 bg-white/70 shadow-[0_4px_24px_rgb(0,0,0,0.02)] backdrop-blur-xl overflow-hidden">
-      <CardHeader className="pt-8 px-8 pb-4 bg-gradient-to-b from-white/50 to-transparent">
-        <CardTitle className="text-[22px] font-heading font-extrabold text-[#111827] flex items-center">
-          <div className="bg-[#C6FF3B] p-2.5 rounded-xl mr-3 shadow-sm">
-            <PlusCircle className="h-6 w-6 text-[#111827]" />
+      <CardHeader className="pt-6 sm:pt-8 px-4 sm:px-8 pb-4 bg-gradient-to-b from-white/50 to-transparent">
+        <CardTitle className="text-[18px] sm:text-[22px] font-heading font-extrabold text-[#111827] flex items-center">
+          <div className="bg-[#C6FF3B] p-2 sm:p-2.5 rounded-xl mr-2 sm:mr-3 shadow-sm shrink-0">
+            <PlusCircle className="h-5 w-5 sm:h-6 sm:w-6 text-[#111827]" />
           </div>
           Add New Sale
         </CardTitle>
       </CardHeader>
-      <CardContent className="px-8 pb-8">
+      <CardContent className="px-4 sm:px-8 pb-6 sm:pb-8">
         <form onSubmit={handleSubmit} className="space-y-6">
           {user?.role === "admin" && (
             <div className="space-y-2">

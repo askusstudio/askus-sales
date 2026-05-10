@@ -28,63 +28,63 @@ export function OverallStats() {
   const averageSale = completedSales.length > 0 ? totalRevenue / completedSales.length : 0;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
       <Card className={cardStyles}>
         <div className="absolute top-0 right-0 w-32 h-32 bg-[#C6FF3B]/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none" />
-        <CardContent className="p-8 relative z-10">
-          <div className="flex items-center space-x-3 mb-5">
-            <div className="bg-[#17153B] text-[#C6FF3B] p-2.5 rounded-2xl shadow-sm">
-              <TrendingUp className="h-5 w-5" />
+        <CardContent className="p-5 sm:p-8 relative z-10">
+          <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-5">
+            <div className="bg-[#17153B] text-[#C6FF3B] p-2 sm:p-2.5 rounded-xl sm:rounded-2xl shadow-sm shrink-0">
+              <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
-            <h3 className="text-[15px] font-semibold tracking-wide text-[#374151] uppercase">Total Revenue</h3>
+            <h3 className="text-[12px] sm:text-[15px] font-semibold tracking-wide text-[#374151] uppercase">Total Revenue</h3>
           </div>
-          <div className="text-[28px] font-heading font-extrabold text-[#111827] tracking-tight">{formatCurrency(totalRevenue)}</div>
-          <p className="text-[15px] font-medium text-[#374151] mt-2">{completedSales.length} total sales recorded</p>
+          <div className="text-[18px] sm:text-[28px] font-heading font-extrabold text-[#111827] tracking-tight">{formatCurrency(totalRevenue)}</div>
+          <p className="text-[12px] sm:text-[15px] font-medium text-[#374151] mt-1 sm:mt-2">{completedSales.length} total sales</p>
         </CardContent>
       </Card>
       
       <Card className={cardStyles}>
         <div className="absolute top-0 right-0 w-32 h-32 bg-[#6D5EF5]/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none" />
-        <CardContent className="p-8 relative z-10">
-          <div className="flex items-center space-x-3 mb-5">
-            <div className="bg-[#6D5EF5]/10 text-[#6D5EF5] p-2.5 rounded-2xl shadow-sm">
-              <Target className="h-5 w-5" />
+        <CardContent className="p-5 sm:p-8 relative z-10">
+          <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-5">
+            <div className="bg-[#6D5EF5]/10 text-[#6D5EF5] p-2 sm:p-2.5 rounded-xl sm:rounded-2xl shadow-sm shrink-0">
+              <Target className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
-            <h3 className="text-[15px] font-semibold tracking-wide text-[#374151] uppercase">Adjusted Revenue</h3>
+            <h3 className="text-[12px] sm:text-[15px] font-semibold tracking-wide text-[#374151] uppercase">Adjusted Revenue</h3>
           </div>
-          <div className="text-[28px] font-heading font-extrabold text-[#111827] tracking-tight">{formatCurrency(adjustedRevenue)}</div>
-          <p className="text-[15px] font-medium text-[#374151] mt-2">Minus refunds</p>
+          <div className="text-[18px] sm:text-[28px] font-heading font-extrabold text-[#111827] tracking-tight">{formatCurrency(adjustedRevenue)}</div>
+          <p className="text-[12px] sm:text-[15px] font-medium text-[#374151] mt-1 sm:mt-2">Minus refunds</p>
         </CardContent>
       </Card>
 
       <Card className={cardStyles}>
         <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none" />
-        <CardContent className="p-8 relative z-10">
-          <div className="flex items-center space-x-3 mb-5">
-            <div className="bg-amber-100 text-amber-600 p-2.5 rounded-2xl shadow-sm">
-              <IndianRupee className="h-5 w-5" />
+        <CardContent className="p-5 sm:p-8 relative z-10">
+          <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-5">
+            <div className="bg-amber-100 text-amber-600 p-2 sm:p-2.5 rounded-xl sm:rounded-2xl shadow-sm shrink-0">
+              <IndianRupee className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
-            <h3 className="text-[15px] font-semibold tracking-wide text-[#374151] uppercase">Avg. Per Sale</h3>
+            <h3 className="text-[12px] sm:text-[15px] font-semibold tracking-wide text-[#374151] uppercase">Avg. Per Sale</h3>
           </div>
-          <div className="text-[28px] font-heading font-extrabold text-[#111827] tracking-tight">{formatCurrency(averageSale)}</div>
-          <p className="text-[15px] font-medium text-[#374151] mt-2">Based on completed sales</p>
+          <div className="text-[18px] sm:text-[28px] font-heading font-extrabold text-[#111827] tracking-tight">{formatCurrency(averageSale)}</div>
+          <p className="text-[12px] sm:text-[15px] font-medium text-[#374151] mt-1 sm:mt-2">Completed sales</p>
         </CardContent>
       </Card>
 
       <Card className={`${cardStyles} bg-gradient-to-br from-[#17153B] to-[#25225a] border-none text-white shadow-xl hover:shadow-[#6D5EF5]/20`}>
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none mix-blend-overlay"></div>
-        <CardContent className="p-8 relative z-10">
-          <div className="flex items-center space-x-3 mb-5">
-            <div className="bg-[#C6FF3B] text-[#17153B] p-2.5 rounded-2xl shadow-lg">
-              <Target className="h-5 w-5" />
+        <CardContent className="p-5 sm:p-8 relative z-10">
+          <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-5">
+            <div className="bg-[#C6FF3B] text-[#17153B] p-2 sm:p-2.5 rounded-xl sm:rounded-2xl shadow-lg shrink-0">
+              <Target className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
-            <h3 className="text-[15px] font-semibold tracking-wide text-slate-300 uppercase">Target Achievement</h3>
+            <h3 className="text-[12px] sm:text-[15px] font-semibold tracking-wide text-slate-300 uppercase">Target</h3>
           </div>
-          <div className="text-[28px] font-heading font-extrabold text-white tracking-tight">
+          <div className="text-[18px] sm:text-[28px] font-heading font-extrabold text-white tracking-tight">
             {((adjustedRevenue / targetAmount) * 100).toFixed(1)}%
           </div>
-          <p className="text-[15px] font-medium text-[#C6FF3B] mt-2">Of {formatCurrency(targetAmount)} target</p>
-          <p className="text-[13px] text-slate-400 mt-2 font-bold uppercase tracking-widest">Due by 31st December 2026</p>
+          <p className="text-[12px] sm:text-[15px] font-medium text-[#C6FF3B] mt-1 sm:mt-2">Of {formatCurrency(targetAmount)}</p>
+          <p className="text-[10px] sm:text-[13px] text-slate-400 mt-1 sm:mt-2 font-bold uppercase tracking-widest">Due 31 Dec 2026</p>
         </CardContent>
       </Card>
     </div>
@@ -164,11 +164,11 @@ export function MemberStats() {
       <CardHeader className="pb-4 pt-8 px-8">
         <CardTitle className="text-[22px] font-heading font-extrabold text-[#111827]">Member Contributions</CardTitle>
       </CardHeader>
-      <CardContent className="px-8 pb-8 pt-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <CardContent className="px-4 sm:px-8 pb-6 sm:pb-8 pt-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8">
           {memberData.map((data, index) => (
             <div key={data.member} className="flex flex-col items-center group">
-              <div className="w-28 h-28 relative mb-4 transition-transform duration-300 group-hover:scale-105">
+              <div className="w-20 h-20 sm:w-28 sm:h-28 relative mb-3 sm:mb-4 transition-transform duration-300 group-hover:scale-105">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
@@ -185,13 +185,13 @@ export function MemberStats() {
                   </PieChart>
                 </ResponsiveContainer>
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <span className="text-[15px] font-bold text-[#111827]">{data.percentage.toFixed(0)}%</span>
+                  <span className="text-[13px] sm:text-[15px] font-bold text-[#111827]">{data.percentage.toFixed(0)}%</span>
                 </div>
               </div>
               <div className="text-center">
-                <h4 className="font-heading font-extrabold text-[20px] text-[#111827] capitalize">{data.member}</h4>
-                <p className="text-[13px] font-semibold text-[#374151] mb-2 tracking-wide uppercase">{data.count} sales</p>
-                <p className="text-[15px] font-bold text-[#6D5EF5] bg-[#6D5EF5]/10 px-4 py-1.5 rounded-full">{formatCurrency(data.revenue)}</p>
+                <h4 className="font-heading font-extrabold text-[16px] sm:text-[20px] text-[#111827] capitalize">{data.member}</h4>
+                <p className="text-[11px] sm:text-[13px] font-semibold text-[#374151] mb-1 sm:mb-2 tracking-wide uppercase">{data.count} sales</p>
+                <p className="text-[12px] sm:text-[15px] font-bold text-[#6D5EF5] bg-[#6D5EF5]/10 px-2 sm:px-4 py-1 sm:py-1.5 rounded-full">{formatCurrency(data.revenue)}</p>
               </div>
             </div>
           ))}
@@ -276,7 +276,7 @@ export function AnalyticsCharts() {
     .sort((a, b) => b.revenue - a.revenue);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 gap-6 sm:gap-8">
       <Card className={cardStyles}>
         <CardHeader className="pt-8 px-8 pb-4">
           <CardTitle className="text-[22px] font-heading font-extrabold text-[#111827]">Monthly Revenue</CardTitle>

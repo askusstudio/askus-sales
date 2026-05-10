@@ -117,8 +117,8 @@ export function SalesTable() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col md:flex-row gap-4 p-8 rounded-[24px] border border-white/60 bg-white/70 shadow-[0_4px_24px_rgb(0,0,0,0.02)] backdrop-blur-xl">
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="flex flex-col gap-4 p-4 sm:p-8 rounded-[24px] border border-white/60 bg-white/70 shadow-[0_4px_24px_rgb(0,0,0,0.02)] backdrop-blur-xl">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           <Select value={filterUser} onValueChange={(val) => val && setFilterUser(val)}>
             <SelectTrigger><SelectValue placeholder="Salesperson" /></SelectTrigger>
             <SelectContent>
@@ -147,6 +147,7 @@ export function SalesTable() {
       </div>
 
       <div className="rounded-[24px] border border-white/60 bg-white/70 shadow-[0_4px_24px_rgb(0,0,0,0.02)] backdrop-blur-xl overflow-hidden" id="sales-table">
+        <div className="overflow-x-auto">
         <Table>
           <TableHeader className="bg-slate-100/50">
             <TableRow className="hover:bg-transparent h-14">
@@ -212,6 +213,7 @@ export function SalesTable() {
             )}
           </TableBody>
         </Table>
+        </div>
       </div>
 
       <Dialog open={!!editSale} onOpenChange={(open) => !open && setEditSale(null)}>
