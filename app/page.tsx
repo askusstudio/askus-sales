@@ -9,7 +9,7 @@ export default function Home() {
     <SalesProvider>
       <div className="min-h-full flex flex-col">
         <Header />
-        <main className="flex-1 p-4 md:p-8 w-full max-w-7xl mx-auto space-y-8">
+        <main className="flex-1 px-2 sm:px-4 md:px-8 pb-8 w-full max-w-7xl mx-auto space-y-6 sm:space-y-8">
           <DashboardContent />
         </main>
       </div>

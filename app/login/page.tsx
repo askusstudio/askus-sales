@@ -21,11 +21,14 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
+      const cleanUsername = username.replace(/\s+/g, '').toLowerCase();
+      const cleanPassword = password.replace(/\s+/g, '').toLowerCase();
+
       const { data, error } = await supabase
         .from("users")
         .select("*")
-        .eq("username", username)
-        .eq("password", password)
+        .eq("username", cleanUsername)
+        .eq("password", cleanPassword)
         .single();
 
       if (error || !data) {
